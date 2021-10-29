@@ -95,18 +95,18 @@ EU_corona[, -c("uid", "iso2", "iso3")]
 EU_corona[, mean(cases)]
 
 # We can also do data analysis. Here we perform opeations directly within "j". Instead of the data frame way, which is a bit more complicated:
-
+# the data frame
 mean(EU_corona[, "cases"])
 
 #Computing on rows and columns 
 
-EU_corona[type == "recovery", median(cases)]
+EU_corona[country == "Germany", max(cases)]
 
 # We will use the examples from the "i" and combine with the "j" to perform statistic operations. It is also an alternative that saves energy and memory in comparison with data frames, as they would return all the columns only to compute some operations of rows. 
 
-EU_corona[type == "recovery", .(country median(cases)]
+EU_corona[type == "death", .(mean(cases))]
 
-EU_corona[, .(mean_cases = mean(cases))]
+mean <- EU_corona[, .(mean_cases = mean(cases))]
 
 # As an last example on "j", we will perform multiple operations. We will check a specific country during this year and see the mean and median of cases.  
 
@@ -124,4 +124,4 @@ deu_cases <- EU_corona[country == "Germany", .(main_cases = sum(cases)), by = c(
 
 EU_corona[type == "death", .(total = max(cases)), by = c("date", "country")][order(-total)]
 
-# Ok! We covered only the surface of data.tables! If you want to delve into it more deeply, we recommend taking a look at .SDs and application of functions to columns. 
+# Ok! We covered only the surface of data.tables! If you want to delve into it more deeply, we recommend taking a look at .SDs and application of functions to columns.
