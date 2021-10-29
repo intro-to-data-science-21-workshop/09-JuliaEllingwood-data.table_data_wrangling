@@ -1,0 +1,121 @@
+---
+title: "Wrangling Data at scale with data.table"
+output: html_document
+date: "`r format(Sys.time(), '%d %B %Y')`"
+---
+  
+ ```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.align = 'center', echo = TRUE)
+```
+
+***
+
+# Wrangling Data at scale with Data.table
+  
+# For this exercise we will need to install two packages. The first will be data.table and the second will be the coronavirus package, which summarizes Coronavirus (COVID-19)
+# cases across countries/provinces/states. 
+
+install.packages("data.table")
+install.packages("coronavirus")
+
+# Afterwards, load them.
+
+library(data.table)
+library(coronavirus)
+
+
+# This guide will do data manipulation with datatables. A brief explainer: Datatables are in fact data frames, but it permits to perform operations by groups besides 
+# the classic operations with rows and columns. One can say that it is capable of processing operation in a third dimension besides the traditional two-dimensional rows and columns. 
+
+library(data.table)
+library(coronavirus)
+
+# Create the data.table of the coronavirus and check its dimensions
+
+table_corona <- as.data.table(coronavirus)
+
+# Its super extensive. It's worth to note that data tables are fast, so it can save you lots of time doing filtering, ordering, grouping, and so on when compared with other packages.
+# This is quite relevant when operating with large datasets, such as the coronavirus one that we are using in this exercise.
+# Check the columns and rows.
+
+ncol(table_corona)
+
+dim(table_corona)
+
+# Now, Let's do some filtering. 
+
+table_corona[3:4]
+
+table_corona[3:4, ]
+
+table_corona[!(1:5)]
+# or 
+table_corona[-(1:5)]
+
+# This is quite similar to the filtering operation that we are used to.
+
+table_corona[.N]
+
+# The .N is an interger. If used during the "i" argument, it gives back total number of rows in the data table. We obtained the last row using it within the square brackets.
+# It's analogous to nrow()  
+
+EU_corona <- table_corona[continent_name == "Europe"]
+
+# We will continue filtering, but will rely to other alternatives that may hasten the process. We will filter using %like#, which will look for patterns. Say that you want
+# something more specific from England, such as Channel Islands.
+
+Uk_corona <- EU_corona[combined_key %like% "^Channel Islands"]
+
+# Therefore, %like% will subset while looking for all rowls that strike a resemblance with the match in a column.
+
+# We will proceed to %between%. It is extremely useful on numeric columns. It will work on intervals.
+
+EU_corona[cases %between% c(200, 300)]
+
+# instead of doing the traditional way.
+
+EU_corona [cases >= 200 & cases <= 300]
+
+# The %chin% is perfect toward specific character vectors.
+
+EU_corona[country %chin% c("Germany", "France", "Italy")]
+
+# General form of data.table
+
+# From the general form of data.table, we use the second argument j to select columns. 
+# Remember to Take DT, filter rows in "i", then compute "j" grouped by "by".
+
+DT[i, j, by]
+
+# Keep in mind the similarities between data frames and data tables. One main difference is that when selecting a single column from a data frame,
+# the result will be a vector. In a data table, it will remain a data table.
+
+# We will check some examples by selecting columns. We will use column names in order to avoid numbers, which can be considered bad practice.
+
+max(EU_corona[, "cases"])
+
+cases_corona <- EU_corona[, .(date, country, cases)]
+
+EU_corona[, -c("uid", "iso2", "iso3")]
+
+EU_corona[, mean(cases)]
+
+# instead of 
+
+mean(EU_corona[, "cases"])
+
+#Computing on rows and columns 
+
+EU_corona[type == "recovery", median(cases)]
+
+EU_corona[type == "recovery", .(country median(cases)]
+
+EU_corona[, .(mean_cases = mean(cases))]
+
+EU_corona[country == "Germany" & date > "2021-01-01", .(mean_cases = mean(cases), median_cases = median(cases))]
+
+# The
+
+case <- EU_corona[type == "death", .(total = sum(cases)), by = "country"]
+
+today_cases <- EU_corona[country == "Germany", .(main_cases = sum(cases)), by = c("type")]
