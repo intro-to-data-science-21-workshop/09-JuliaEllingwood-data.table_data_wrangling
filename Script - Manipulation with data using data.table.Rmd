@@ -82,21 +82,19 @@ DT[i, j, by]
 
 # We will check some examples by selecting columns. Remember to avoid using numbers when selecting them, as it is considered bad practice. As normal projects will normally pass through updates and modifications, the numbers can be misplaced, thus creating a series of headache for future-me. Therefore, use columns names to avoid future problems.
 
-max(EU_corona[, "cases"])
-
-# "j" accepts a list of columns, so we can diversify a little bit:
-
-cases_corona <- EU_corona[, .(date, country, cases)]
+EU_corona[, mean(cases)]
 
 # and deselect what is not necessary as well. Like the uid codes (they are mostly for maps, that are going to be covered in another workshop).
 
+select_example <- EU_corona[, c("date", "country")]
+
 EU_corona[, -c("uid", "iso2", "iso3")]
 
-EU_corona[, mean(cases)]
+# "j" accepts a list of columns, so we can manipulate them to focus on whatever we want:
+
+cases_corona <- EU_corona[, .(date, country, cases)]
 
 # We can also do data analysis. Here we perform opeations directly within "j". Instead of the data frame way, which is a bit more complicated:
-# the data frame
-mean(EU_corona[, "cases"])
 
 #Computing on rows and columns 
 
@@ -106,7 +104,7 @@ EU_corona[country == "Germany", max(cases)]
 
 EU_corona[type == "death", .(mean(cases))]
 
-mean <- EU_corona[, .(mean_cases = mean(cases))]
+EU_corona[, .(mean_cases = mean(cases))]
 
 # As an last example on "j", we will perform multiple operations. We will check a specific country during this year and see the mean and median of cases.  
 
@@ -115,10 +113,6 @@ EU_corona[country == "Germany" & date > "2021-01-01", .(mean_cases = mean(cases)
 # Lastly, we will talk about the "by" argument. It is a grouping operation. It will give the number of rows to each group. Here we will look more specifically at the number of deaths by country.
 
 n_deaths <- EU_corona[type == "death", .(total = sum(cases)), by = "country"]
-
-# The final example will see the total sum of cases in Germany.
-
-deu_cases <- EU_corona[country == "Germany", .(main_cases = sum(cases)), by = c("type")]
 
 # Moving to the final step, we will talk about chaining expressions. Chaining allows us to do sucessive operations on the results that we had in the previous brackets. You can certaintly use a high number of chains to obtain high specific results. Wise remind: Do not try multiple chainings at once, slow and steady is the way to not receive an error.
 
