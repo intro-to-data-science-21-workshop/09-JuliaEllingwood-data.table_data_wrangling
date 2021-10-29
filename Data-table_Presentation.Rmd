@@ -3,7 +3,7 @@ title: "Intro to Data Wrangling with data.table"
 subtitle: "Intro to Data Science, Fall 2021 Workshops"
 author: "Julia Ellingwood & Renato Franco"
 output: ioslides_presentation
-keep_md: true 
+keep_md: false 
 ---
 
 ```{r setup, include=FALSE}
@@ -39,8 +39,15 @@ The language is pretty concise and you may find it more intuitive. It’s also m
 <img src="./data_walrus.png" height=300>
 </div>
 
-# Quick Background {.bigger}
+# data.table objects and syntax {.bigger}
 
+## Creating a data.table object
+
+Creating a data.table object is easy!
+> library(data.table)
+> example_dt <- data.table(your_dataset)
+
+## Appendix
 ```{r pressure}
 plot(pressure)
 ```
