@@ -173,8 +173,8 @@ Example: `your_dataset[species == "bat", mean(pop)]`
              `--------> rows`\
 **j** also allows you to create new columns easily. 
 
-Example: /
-`your_dataset[, gdp_per_capita := gdp/pop]`/
+Example: \
+`your_dataset[, gdp_per_capita := gdp/pop]`\
 This creates a new calculated column: `gdp_per_capita`
 
 Let's take a closer look at using **j** in R. 
