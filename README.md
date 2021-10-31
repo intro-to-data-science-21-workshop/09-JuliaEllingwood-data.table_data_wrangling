@@ -1,7 +1,10 @@
 # Intro to Data Wrangling with data.table
 
 ## Your Instructors
-- Julia Ellingwood and Renato Franco
+Julia Ellingwood and Renato Franco
+
+## Materials
+RPub version of slidedeck here: http://rpubs.com/jellingwood-ftw/829410
 
 ## The Agenda
 - **Background on data.table** what it’s for, who’s behind it, and how does it fit into the tidyverse
