@@ -203,3 +203,8 @@ This creates a new calculated column `gdp_per_capita` and then groups by the con
   - https://ramikrispin.github.io/coronavirus/
   - https://github.com/CSSEGISandData/COVID-19
 
+## Exercises
+- Go to "Exercises - Manipulation with data using data.table.Rmd" to start
+- Note you'll have to install "coronavirus" and "data.table" packages
+- `data("coronavirus")` loads the relevant dataset
+- Make use of the data.table cheatsheet! It's linked under add'l sources on the readme file. 

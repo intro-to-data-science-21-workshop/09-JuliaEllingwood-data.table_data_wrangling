@@ -6,6 +6,6 @@ server: rpubs.com
 hostUrl: rpubs.com
 appId: https://api.rpubs.com/api/v1/document/829410/d52e1fb720d540a4a0e08e4d4908ae0f
 bundleId: https://api.rpubs.com/api/v1/document/829410/d52e1fb720d540a4a0e08e4d4908ae0f
-url: http://rpubs.com/publish/claim/829410/bbc2bffa13b54a6bb47c1da2f979a7cc
-when: 1635704229.38218
-lastSyncTime: 1635704229.38219
+url: http://rpubs.com/jellingwood-ftw/829410
+when: 1635780134.44798
+lastSyncTime: 1635780134.44799
