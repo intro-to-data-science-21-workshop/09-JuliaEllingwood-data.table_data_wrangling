@@ -30,62 +30,62 @@ library(dplyr)
 
 # Now, we will use data.table and the coronavirus package and compare it with the dplyr package.
 
-# 1a - Transform a coronavirus dataset into a data.table. Name it 'corona'. Now, return the 10 last row. 
+# 1a - Transform a coronavirus dataset into a data.table. Name it 'corona_dt'. Now, return the 10 last rows. 
+```{r}
+data("coronavirus")
+
+```
+
+# 1b What's another way to do this using other tools we know?
 ```{r}
 
 ```
 
-# 1b How would you do that but with a data frame and using dplyr?
+# 2a Filter the table into one that has information about European countries. Name it euro_corona. Subset all rows from the data.table where the country is Germany.
 ```{r}
 
 ```
 
-# 2a Filter the table into one that has information about European countries. Name it Euro_corona. Subset all rows from the data.table where the country is Germany.
+# 2b How would you subset using dplyr functions?
 ```{r}
 
 ```
 
-# 2b How would you subset using a data frame?
+# 3a Use %like% to return all provinces that include "island" in the name. Can you report how many provinces that includes?
 ```{r}
 
 ```
 
-# 3a Use %like% to search for Gibraltar. 
+# 3b How would you do the above with dplyr::filter()?
 ```{r}
 
 ```
 
-# 3b How would you do that in a data frame?
+# 4a Now try using %chin%. Subset all rows in euro_corona where country is Norway, Denmark, and Sweden.
 ```{r}
 
 ```
 
-# 4a Use %between% to check all rows between June and July
+# 5a Select the first three columns. Don't forget to check the class.
 ```{r}
 
 ```
 
-# 4b How would you do that in a data frame?
+# 5b How would you deselect them?
 ```{r}
 
 ```
 
-# 5a Now use %chin%. Subset all rows where country is Norway, Denmark, and Sweden.
+# 5c Create a new column called pop_size that indicates whether a country population is "large" (over 10 million) or "small" (below 10 million). Don't worry too much about inclusive/exclusive on the numbers here.
 ```{r}
 
 ```
 
-# 5b How would you do that with a data frame?
+# 6. Bringing it all together: Let's say you want to create a new column that reports the a daily incidence rate, which is calculated thus: incidence_rate = (confirmed_cases / population) * 100,000
+
+# How would you go about that?
 ```{r}
 
 ```
 
-# 6a Select the first three columns. Don't forget to check the class.
-```{r}
 
-```
-
-# 6b How would you deselect them?
-```{r}
-
-```
