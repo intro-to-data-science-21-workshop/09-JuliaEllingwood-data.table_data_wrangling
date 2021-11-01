@@ -19,6 +19,7 @@ RPub version of slidedeck here: http://rpubs.com/jellingwood-ftw/829410
 ## Some additional sources on data.table
 - https://rdatatable.gitlab.io/data.table/
 - The CRAN vignette: https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html
+- data.table cheatsheet: https://github.com/intro-to-data-science-21-workshop/09-JuliaEllingwood-data.table_data_wrangling/blob/master/datatable_cheatsheet.pdf
 - Datacamp course on data manipulation with data.table: https://app.datacamp.com/learn/skill-tracks/data-manipulation-with-r
 - Simulated datasets and processing time with data.table, dplyr, and other data wrangling tools: https://h2oai.github.io/db-benchmark/
 
